@@ -1,31 +1,45 @@
-def calculate_sum(l):
-    s = 0
-    for i in range(len(l)):
-        s = s + l[i]
-    return s
+from typing import List, Dict, Optional
 
-def find_user(users_list, name):
+def calculate_sum(numbers: List[int]) -> int:
+    """与えられた数値リストの合計を計算します。
+
+    Args:
+        numbers: 合計を計算する整数のリスト
+
+    Returns:
+        リスト内の数値の合計
+    """
+    return sum(numbers)
+
+def find_user(users: List[Dict[str, str]], name: str) -> Optional[Dict[str, str]]:
+    """ユーザーリストから指定された名前のユーザーを検索します。
+
+    Args:
+        users: ユーザー情報を含む辞書のリスト
+        name: 検索するユーザー名
+
+    Returns:
+        ユーザーが見つかった場合はユーザー情報の辞書、見つからない場合はNone
+    """
     try:
-        for i in range(len(users_list)):
-            if users_list[i]["name"] == name:
-                return users_list[i]
-    except:
-        pass
-    return None
+        return next((user for user in users if user["name"] == name), None)
+    except KeyError:
+        return None
 
 if __name__ == "__main__":
-    # グローバル変数の使用
-    GLOBAL_DATA = []
+    # 定数は上部で定義
+    MAX_LIST_SIZE = 5
+    ITERATION_COUNT = 100
+
+    # ローカルスコープでデータを管理
+    data = []
     
-    # マジックナンバーの使用
-    if len(GLOBAL_DATA) > 5:
-        print("リストが大きすぎます")
+    if len(data) > MAX_LIST_SIZE:
+        print("リストが最大サイズを超えています")
     
-    # 非効率な文字列連結
-    result = ""
-    for i in range(100):
-        result = result + str(i)
+    # 効率的な文字列連結
+    result = "".join(str(i) for i in range(ITERATION_COUNT))
     
-    # 意味のない変数名
-    x = calculate_sum([1, 2, 3])
-    print(x)
+    # 意味のある変数名を使用
+    total_sum = calculate_sum([1, 2, 3])
+    print(f"合計: {total_sum}")
