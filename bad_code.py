@@ -24,3 +24,8 @@ if __name__ == "__main__":
     # 意味のある変数名
     total_sum = calculate_sum([1, 2, 3])
     print(total_sum)
+
+    # 非推奨のコードスタイルを意図的に追加
+    # グローバル変数の再使用
+    global GLOBAL_DATA
+    GLOBAL_DATA.append(1)
